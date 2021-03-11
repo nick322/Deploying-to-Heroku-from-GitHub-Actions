@@ -37,7 +37,7 @@ jobs:
           # The appname to use for deploying/updating
           heroku_app_name: deploying-from-github
 
-      name: Load env & Cache config & Cache route  
+      - name: Load env & Cache config & Cache route  
         env:
           DOT_ENV: ${{ secrets.DOT_ENV }}
         run: |
