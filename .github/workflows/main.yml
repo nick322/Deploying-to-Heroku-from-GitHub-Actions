@@ -36,15 +36,15 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           # The appname to use for deploying/updating
           heroku_app_name: deploying-from-github
-
+        
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+        run: heroku run bash php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-      - name: Load env & Cache config & Cache route  
-        run: |
-          sed -i 's/APP_ENV=local/APP_ENV=dev/g' .env
-          sed -i 's/APP_KEY=/APP_KEY=${{ secrets.APP_KEY }}/g' .env`
-          php artisan config:cache
-          php artisan route:cache
+      # - name: Load env & Cache config & Cache route  
+      #   run: |
+      #     sed -i 's/APP_ENV=local/APP_ENV=dev/g' .env
+      #     sed -i 's/APP_KEY=/APP_KEY=${{ secrets.APP_KEY }}/g' .env`
+      #     php artisan config:cache
+      #     php artisan route:cache
       
        
