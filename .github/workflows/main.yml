@@ -37,17 +37,14 @@ jobs:
           # The appname to use for deploying/updating
           heroku_app_name: deploying-from-github
 
-      - name: Directory Permissions
-          run: chmod -R 777 storage bootstrap/cache
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       - name: Load env & Cache config & Cache route  
-        env:
-          DOT_ENV: ${{ secrets.DOT_ENV }}
         run: |
-          sed -i 's/APP_ENV=local/APP_ENV=dev/g' .env.example
-          sed -i 's/APP_KEY=/APP_KEY=${{ secrets.APP_KEY }}/g' .env.example
+          sed -i 's/APP_ENV=local/APP_ENV=dev/g' .env
+          sed -i 's/APP_KEY=/APP_KEY=${{ secrets.APP_KEY }}/g' .env`
           php artisan config:cache
           php artisan route:cache
       
-        - name: Copy .env
-          run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+       
