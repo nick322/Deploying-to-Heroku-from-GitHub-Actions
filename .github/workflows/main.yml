@@ -25,16 +25,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          
       - name: Deploy to Heroku
         # You may pin to the exact commit or the version.
         # uses: AkhileshNS/heroku-deploy@79ef2ae4ff9b897010907016b268fd0f88561820
@@ -46,3 +36,16 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           # The appname to use for deploying/updating
           heroku_app_name: deploying-from-github
+
+      - name: Load env 
+        env:
+          DOT_ENV: ${{ secrets.DOT_ENV }}
+        
+      - name: Cache config  
+        run:
+          php artisan config:cache
+
+      - name: Cache route  
+        run:
+          php artisan route:cache
+      
