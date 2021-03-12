@@ -38,7 +38,7 @@ jobs:
           heroku_app_name: deploying-from-github
         
       - name: Copy .env
-        run: heroku run bash php -r "file_exists('.env') || copy('.env.example', '.env');"
+        run: heroku run -a deploying-from-github -- mv .env.example .env
 
       # - name: Load env & Cache config & Cache route  
       #   run: |
