@@ -1,4 +1,4 @@
-FROM php:7.4.16-apache
+FROM php:7.4.16-apache-buster
 
 #install all the system dependencies and enable PHP modules 
 RUN apt-get update && apt-get install -y \
@@ -43,9 +43,10 @@ RUN composer install --no-interaction
 RUN chown -R www-data:www-data $APP_HOME
 
 #update apache port at runtime for Heroku
-# CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
 
-RUN rm -rf /etc/apache2
+# RUN rm -rf /etc/apache2
 
 ENTRYPOINT []
-CMD ["find", "/etc/apache2"]
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
+
+# CMD ["find", "/etc/apache2"]
