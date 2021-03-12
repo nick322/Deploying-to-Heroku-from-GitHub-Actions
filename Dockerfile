@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
   libicu-dev \
   libpq-dev \
   libonig-dev \
+  libzip-dev \
   git \
   zip \
   unzip \
