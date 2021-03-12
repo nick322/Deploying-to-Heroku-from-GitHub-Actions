@@ -5,7 +5,6 @@ FROM php:7.4.16-apache
 RUN apt-get update && apt-get install -y \
   libicu-dev \
   libpq-dev \
-  libmcrypt-dev \
   git \
   zip \
   unzip \
@@ -14,8 +13,6 @@ RUN apt-get update && apt-get install -y \
   && docker-php-ext-install \
   intl \
   mbstring \
-  mcrypt \
-  pcntl \
   pdo_mysql \
   pdo_pgsql \
   pgsql \
