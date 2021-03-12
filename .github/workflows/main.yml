@@ -36,7 +36,11 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           # The appname to use for deploying/updating
           heroku_app_name: deploying-from-github
-        
+
+          procfile: 'web: vendor/bin/heroku-php-nginx public/'
+          
+          env_file: '.env.example'
+
       - name: Copy .env
         run: heroku run -a deploying-from-github -- mv .env.example .env
 
