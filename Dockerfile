@@ -1,29 +1,6 @@
 
 FROM php:7.4.16-apache
 
-#install all the system dependencies and enable PHP modules 
-RUN apt-get update && apt-get install -y \
-      libicu-dev \
-      libpq-dev \
-      libmcrypt-dev \
-      git \
-      zip \
-      unzip \
-      libxml2-dev \
-      zlib1g-dev \
-      libpng-dev \
-    && rm -r /var/lib/apt/lists/* \
-    && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
-    && docker-php-ext-install \
-      intl \
-      mbstring \
-      mcrypt \
-      pdo_mysql \
-      pgsql \
-      zip \
-      opcache \
-      gd 
-      
 #install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
