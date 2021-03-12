@@ -1,10 +1,10 @@
-#start with our base image (the foundation) - version 7.1.5
 FROM php:7.4.16-apache
 
 #install all the system dependencies and enable PHP modules 
 RUN apt-get update && apt-get install -y \
   libicu-dev \
   libpq-dev \
+  libonig-dev \
   git \
   zip \
   unzip \
