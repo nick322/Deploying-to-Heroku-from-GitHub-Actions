@@ -47,4 +47,4 @@ RUN cp .env.example .env
 
 #update apache port at runtime for Heroku
 ENTRYPOINT []
-CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground ; sed -i "s/APP_KEY=/APP_KEY=${APP_KEY_ARG}/g" /var/www/html.env
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground ; sed -i "s/APP_KEY=/APP_KEY=${APP_KEY_ARG}/g" /var/www/html/.env

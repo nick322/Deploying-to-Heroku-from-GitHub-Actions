@@ -42,7 +42,7 @@ jobs:
           # env_file: '.env.example'
 
         env:
-          APP_KEY_ARG: ${{ secrets.APP_KEY }}
+          HD_APP_KEY_ARG: ${{ secrets.APP_KEY }}
 
       
        
