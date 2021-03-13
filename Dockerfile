@@ -20,9 +20,6 @@ RUN apt-get update && apt-get install -y \
   libicu-dev \
   libpq-dev \
   libonig-dev \
-  libzip-dev \
-  git \
-  zip \
   unzip \
   && rm -r /var/lib/apt/lists/* \
   && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
@@ -30,7 +27,6 @@ RUN apt-get update && apt-get install -y \
   intl \
   mbstring \
   pdo_mysql \
-  zip \
   opcache
 
 COPY composer.* ./
@@ -45,13 +41,10 @@ RUN chown -R www-data:www-data $APP_HOME
 #prepare .env
 RUN cp .env.example .env
 
-ARG APP_KEY_ARG
 
-RUN sed -i "s/APP_KEY=/APP_KEY=${APP_KEY_ARG}/g" .env
-
-RUN php artisan config:cache
+# RUN php artisan config:cache
 # RUN php artisan route:cache
 
 #update apache port at runtime for Heroku
 ENTRYPOINT []
-CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-enabled/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground ; sed -i "s/APP_KEY=/APP_KEY=${APP_KEY_ARG}/g" /var/www/html.env
