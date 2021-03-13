@@ -41,10 +41,10 @@ jobs:
           # procfile: 'web: vendor/bin/heroku-php-nginx public/'
           # env_file: '.env.example'
           
-          docker_build_args: APP_KEY_ARG
+          docker_build_args: APP_KEY
 
         env:
-          APP_KEY_ARG: ${{ secrets.APP_KEY }}
+          APP_KEY: ${{ secrets.APP_KEY }}
 
       
        

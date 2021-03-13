@@ -41,8 +41,7 @@ RUN chown -R www-data:www-data $APP_HOME
 #prepare .env
 RUN cp .env.example .env
 
-ARG APP_KEY_ARG
-ENV APP_KEY = APP_KEY_ARG
+ARG APP_KEY
 RUN sed -i "s/APP_KEY=/APP_KEY=$APP_KEY/g" .env
 
 # RUN php artisan config:cache
