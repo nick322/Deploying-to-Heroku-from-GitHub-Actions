@@ -33,11 +33,11 @@ RUN sed -i -e "s/html/html\/public/g" /etc/apache2/sites-enabled/000-default.con
 # enable apache module rewrite
 RUN a2enmod rewrite
 
-#copy source files and run composer
-COPY . $APP_HOME
+COPY composer.* ./
+RUN composer install --no-scripts
 
-# install all PHP dependencies
-RUN composer install --no-interaction
+COPY . $APP_HOME
+RUN composer run post-autoload-dump
 
 #change ownership of our applications
 RUN chown -R www-data:www-data $APP_HOME
@@ -51,7 +51,7 @@ ENV APP_KEY=$APP_KEY_ARG
 RUN sed -i 's/APP_KEY=/APP_KEY=${APP_KEY}/g' .env
 
 RUN php artisan config:cache
-RUN php artisan route:cache
+# RUN php artisan route:cache
 
 #update apache port at runtime for Heroku
 ENTRYPOINT []
