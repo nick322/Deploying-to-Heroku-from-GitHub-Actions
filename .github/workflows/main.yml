@@ -43,8 +43,8 @@ jobs:
           
           docker_build_args: APP_KEY_ARG
 
-          env:
-            APP_KEY_ARG: ${{ secrets.APP_KEY }}
+        env:
+          APP_KEY_ARG: ${{ secrets.APP_KEY }}
 
       
        
