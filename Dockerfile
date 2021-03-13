@@ -47,7 +47,7 @@ RUN cp .env.example .env
 
 ARG APP_KEY_ARG
 
-RUN sed -i 's/APP_KEY=/APP_KEY=$APP_KEY_ARG/g' .env
+RUN sed -i "s/APP_KEY=/APP_KEY=$APP_KEY_ARG/g" .env
 
 RUN php artisan config:cache
 # RUN php artisan route:cache
