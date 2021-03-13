@@ -1,3 +1,5 @@
 build:
   docker:
     web: Dockerfile
+  config:
+    APP_KEY_ARG: $APP_KEY_ARG

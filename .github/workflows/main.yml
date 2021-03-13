@@ -39,14 +39,10 @@ jobs:
 
           usedocker: true
           # procfile: 'web: vendor/bin/heroku-php-nginx public/'
-          
           # env_file: '.env.example'
 
-      # - name: Load env & Cache config & Cache route  
-      #   run: |
-      #     sed -i 's/APP_ENV=local/APP_ENV=dev/g' .env
-      #     sed -i 's/APP_KEY=/APP_KEY=${{ secrets.APP_KEY }}/g' .env`
-      #     php artisan config:cache
-      #     php artisan route:cache
+        env:
+          APP_KEY_ARG: ${{ secrets.APP_KEY }}
+
       
        
