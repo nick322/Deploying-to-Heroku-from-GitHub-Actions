@@ -40,9 +40,11 @@ jobs:
           usedocker: true
           # procfile: 'web: vendor/bin/heroku-php-nginx public/'
           # env_file: '.env.example'
-
-        env:
-          HD_APP_KEY_ARG: ${{ secrets.APP_KEY }}
+          
+          docker_build_args: |
+            APP_KEY_ARG
+          env:
+            APP_KEY_ARG: ${{ secrets.APP_KEY }}
 
       
        
