@@ -44,8 +44,8 @@ RUN cp .env.example .env
 ARG APP_KEY
 RUN sed -i "s/APP_KEY=/APP_KEY=$APP_KEY/g" .env
 
-# RUN php artisan config:cache
-# RUN php artisan route:cache
+RUN php artisan config:cache
+RUN php artisan route:cache
 
 #update apache port at runtime for Heroku
 ENTRYPOINT []
